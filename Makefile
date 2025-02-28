@@ -1,4 +1,4 @@
-.PHONY: cdown cbuild cup clog restart install prune proto
+.PHONY: cdown cbuild cup clog restart install prune
 
 cdown:
 	docker-compose down
