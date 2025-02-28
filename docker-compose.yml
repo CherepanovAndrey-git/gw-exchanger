@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  exchanger-db:
+    image: postgres:15
+    networks:
+      - shared-network
+    container_name: gw-exchanger-db
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - exchanger_data:/var/lib/postgresql/data
+
+  exchanger:
+    build: .
+    container_name: gw-exchanger
+    networks:
+      - shared-network
+    ports:
+      - "${EXCHANGER_PORT}:${EXCHANGER_PORT}"
+    environment:
+      - DB_URL=${DB_URL}
+      - EXCHANGER_PORT=${EXCHANGER_PORT}
+    env_file:
+      - .env
+    depends_on:
+      - exchanger-db
+    entrypoint: ["/app/wait-for-db.sh", "exchanger-db", "/app/entrypoint.sh"]
+
+volumes:
+  exchanger_data:
+
+networks:
+  shared-network:
+    external: true
