@@ -1,11 +1,10 @@
 > Dockerfile has shared network for the same subnet, both should be on the same localhost
 
 Requirements:
-1) Go 1.24
-2) Docker
-3) Docker-compose
-4) Make
-5) Ubuntu
+1) Docker
+2) Docker-compose
+3) Make
+4) Ubuntu
 
 # Default .env file:
 
