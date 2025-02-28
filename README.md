@@ -5,6 +5,7 @@ Requirements:
 2) Docker-compose
 3) Make
 4) Ubuntu
+5) Go (Mainly for grpcurl test)
 
 # Default .env file:
 
