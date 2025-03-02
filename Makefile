@@ -14,7 +14,7 @@ clog:
 
 restart: cdown cbuild cup
 
-install: cbuild cup clog
+install: cbuild cup
 
 prune:
 	docker-compose down -v --rmi all && docker system prune -f
